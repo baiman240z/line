@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LINE Messaging API - {% block title %}{% endblock %}</title>
+    {% include 'parts/head.twig' %}
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+{% include 'parts/nav.twig' %}
+
+<div class="container">
+    {% block container %}{% endblock %}
+    {% include 'parts/footer.twig' %}
+</div>
+
+{% include 'parts/scripts.twig' %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

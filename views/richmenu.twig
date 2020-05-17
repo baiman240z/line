@@ -1,0 +1,68 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Top{% endblock %}
+
+{% block container %}
+    <h1>Rich Menu</h1>
+
+    <div class="section">
+        <form id="main-form" method="post" action="">
+            <input type="hidden" name="doc_id" value="">
+            <div class="card-panel z-depth-3">
+                <div class="row">
+                    <div class="col s12 center">
+                        <div id="img-block">
+                            <img id="menu-img" width="" src="/img/noimage.png" alt="Rich menu image">
+                        </div>
+
+                        <div id="loader" class="preloader-wrapper active" style="display: none">
+                            <div class="spinner-layer spinner-yellow-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-field">
+                            <button class="waves-effect waves-light btn yellow darken-3" type="button" name="image-btn">
+                                画像指定
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="input-field">
+                            <textarea name="json" class="materialize-textarea yellow lighten-5"></textarea>
+                            <label for="json">JSON</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button class="waves-effect waves-light btn" type="submit">
+                        <i class="material-icons left">send</i>Send
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+<div id="wait-modal" class="modal">
+    <div class="modal-content">
+        <h4>アップロード中です</h4>
+        <div class="progress mt-4">
+            <div class="determinate" style="width: 0%"></div>
+        </div>
+    </div>
+</div>
+
+<div class="hide">
+    <input id="file" type="file" name="image">
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/richmenu.js"></script>
+{% endblock %}

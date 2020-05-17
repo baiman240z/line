@@ -1,0 +1,35 @@
+$sizes: (
+        '0': 0,
+        '1': 0.25,
+        '2': 0.5,
+        '3': 1,
+        '4': 1.5,
+        '5': 3,
+);
+
+$positions: (
+        't': 'top',
+        'r': 'right',
+        'b': 'bottom',
+        'l': 'left',
+);
+
+@each $sizeNo, $size in $sizes {
+  @each $mark, $pos in $positions {
+    .m#{$mark}-#{$sizeNo} {
+      @if $size > 0 {
+        margin-#{$pos}: #{$size}em !important;
+      } @else {
+        margin-#{$pos}: #{$size} !important;
+      }
+    }
+
+    .p#{$mark}-#{$sizeNo} {
+      @if $size > 0 {
+        padding-#{$pos}: #{$size}em !important;
+      } @else {
+        padding-#{$pos}: #{$size} !important;
+      }
+    }
+  }
+}

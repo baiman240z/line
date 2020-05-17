@@ -1,0 +1,35 @@
+{
+  "name": "line",
+  "version": "0.0.1",
+  "description": "LINE Messaging API Tools",
+  "scripts": {
+    "build": "node-sass src/sass/ -o public/css --source-map true --source-comments && webpack",
+    "watch-webpack": "webpack -w --display-error-details",
+    "watch-sass": "node-sass -w src/sass/ -o public/css --source-map true --source-comments",
+    "start": "nodemon -V -e js,twig app.js --port=3000"
+  },
+  "author": "Baiman240z",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "commander": "^5.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "messaging-api-line": "^0.8.5",
+    "multer": "^1.4.2",
+    "twig": "^1.15.1",
+    "yaml": "^1.9.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
+    "materialize-css": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
