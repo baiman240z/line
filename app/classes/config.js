@@ -1,6 +1,5 @@
 const fs = require('fs');
 const YAML = require('yaml');
-const Util = require('./util');
 
 module.exports = class Config {
     static basedir() {
