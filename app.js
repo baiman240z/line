@@ -39,6 +39,7 @@ app.use(function(req, res, next) {
     }
 
     res.locals.session = req.session;
+    res.locals.channel_name = channels[req.session.channel].name;
 
     next();
 });

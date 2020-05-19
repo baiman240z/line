@@ -12,16 +12,12 @@
     <div class="section">
 
         {% if menus.length > 0 %}
-        <div class="red-text text-darken-3">(*)Default</div>
         <ul class="collection">
             {% for menu in menus %}
             <li class="collection-item" menu-id="{{ menu.richMenuId }}">
                 <div class="clearfix">
                     <div class="chip blue darken-3 white-text copy-clip rich-menu-id tooltipped" data-tooltip="Copy clipboard">{{ menu.richMenuId }}</div>
                     <span>{{ menu.name }}</span>
-                    {% if menu.richMenuId == defaultMenuId %}
-                        <span class="red-text text-darken-3">(*)</span>
-                    {% endif %}
                     <button type="button" class="waves-effect waves-light green btn right detail-btn ml-2 tooltipped" data-tooltip="Open detail">
                         <i class="material-icons">remove_red_eye</i>
                     </button>
@@ -31,6 +27,9 @@
                     <button type="button" class="waves-effect waves-light red btn right delete-btn tooltipped" data-tooltip="Remove">
                         <i class="material-icons">delete</i>
                     </button>
+                    {% if menu.richMenuId == defaultMenuId %}
+                        <span class="badge mr-3 z-depth-1">default</span>
+                    {% endif %}
                 </div>
             </li>
             {% endfor %}

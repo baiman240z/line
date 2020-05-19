@@ -1,19 +1,17 @@
 <div class="navbar-fixed">
     <nav class="green darken-1" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="/" class="brand-logo">LINE Messaging API Tools</a>
+            <a id="logo-container" href="/" class="brand-logo">
+                LINE Messaging API Tools@{{ channel_name }}
+            </a>
             <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="/">Top</a></li>
                 <li><a href="/richmenu/menus">Rich Menu</a></li>
                 <li>
-                    <div class="input-field">
-                        <select name="channel" id="channel-selector">
-                            {% for key, channel in channels %}
-                                <option value="{{ key }}" {% if key == session.channel %}selected{% endif %}>{{ channel.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    <a href="#" class="setting-btn">
+                        <i class="material-icons">settings</i>
+                    </a>
                 </li>
             </ul>
         </div>

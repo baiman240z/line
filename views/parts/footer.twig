@@ -7,3 +7,27 @@
 </footer>
 
 <textarea id="copy-boad" name="copy-boad" style="display:none"></textarea>
+
+<div id="setting-modal" class="modal">
+    <div class="modal-content">
+        <h4>Setting</h4>
+        <form id="setting-form" action="">
+            <div class="row">
+                <div class="input-field col s12 l6">
+                    <select name="channel" id="channel-selector">
+                        {% for key, channel in channels %}
+                            <option value="{{ key }}" {% if key == session.channel %}selected{% endif %}>{{ channel.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>Channel</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">
+            <i class="material-icons">close</i>
+            close
+        </a>
+    </div>
+</div>

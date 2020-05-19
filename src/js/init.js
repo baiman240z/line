@@ -19,4 +19,11 @@ const M = require('materialize-css');
             console.log(response);
         });
     });
+
+    $('.setting-btn').on('click', () => {
+        const elem = document.getElementById('setting-modal');
+        const modal = M.Modal.getInstance(elem);
+        modal.open();
+        return false;
+    });
 })();
