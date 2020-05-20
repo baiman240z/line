@@ -29,4 +29,12 @@ module.exports = class Util {
     static docPath(id) {
         return Config.basedir() + '/tmp/' + id + '.json';
     }
+
+    static setFlashMessage(session, message) {
+        if (typeof session.flash_messages == 'object') {
+            session.flash_messages.push(message);
+        } else {
+            session.flash_messages = [message];
+        }
+    }
 }

@@ -12,12 +12,13 @@ const M = require('materialize-css');
         M.toast({html: 'Copied "' + text + '"'});
     });
 
-    $('#channel-selector').on('change', function() {
-        $.post('/channel', {channel: $(this).val()}).done((response) => {
+    $('#setting-form').on('submit', function() {
+        $.post('/setting', $(this).serializeArray()).done((response) => {
             location.reload();
         }).fail((response) => {
             console.log(response);
         });
+        return false;
     });
 
     $('.setting-btn').on('click', () => {
@@ -25,5 +26,9 @@ const M = require('materialize-css');
         const modal = M.Modal.getInstance(elem);
         modal.open();
         return false;
+    });
+
+    $('.flash-message').each(function() {
+        M.toast({html: $(this).text()});
     });
 })();

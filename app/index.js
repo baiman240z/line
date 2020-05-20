@@ -25,8 +25,9 @@ router.post('/upload', multer({ dest: 'tmp/' }).single('file'), (req, res) => {
     });
 });
 
-router.post('/channel', async function (req, res) {
+router.post('/setting', async function (req, res) {
     req.session.channel = req.body['channel'];
+    Util.setFlashMessage(req.session, 'Changed setting');
     res.send('ok');
 });
 

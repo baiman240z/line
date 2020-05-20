@@ -38,6 +38,11 @@ app.use(function(req, res, next) {
         delete req.session.error;
     }
 
+    if (req.session.flash_messages) {
+        res.locals.flash_messages = req.session.flash_messages;
+        delete req.session.flash_messages;
+    }
+
     res.locals.session = req.session;
     res.locals.channel_name = channels[req.session.channel].name;
 
