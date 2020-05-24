@@ -41,9 +41,10 @@ const $ = require('jquery');
             $('#menu-img').attr('src', '/doc/' + response.doc_id);
         }).fail(function(response) {
             console.log(response);
-            if (!response.responseText) {
+            if (response.responseText) {
+                alert(response.responseText);
+            } else {
                 alert('アップロードが中断されました');
-                return false;
             }
         }).always(function() {
             $('#loader').hide();

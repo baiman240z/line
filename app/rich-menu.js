@@ -4,6 +4,9 @@ const router = express.Router();
 const RichMenu = require('./classes/rich-menu');
 const Util = require('./classes/util');
 
+const Tokens = require('csrf');
+const tokens = new Tokens();
+
 router.get('/menus', async function (req, res) {
     const line = new RichMenu(req.session.channel);
     const menus = await line.menus();
@@ -36,11 +39,21 @@ router.post('/default', async function (req, res) {
 });
 
 router.get('/menu', async function (req, res) {
+    const secret = tokens.secretSync();
+    req.session.csrf_secret = secret;
     res.render('richmenu', {
+        _csrf: tokens.create(secret)
     });
 });
 
 router.post('/menu', async function (req, res) {
+    // CSRF verify
+    if (!tokens.verify(req.session.csrf_secret, req.body['_csrf'])) {
+        req.session.error = 'CSRF Error';
+        res.redirect('/richmenu/menus');
+        return;
+    }
+
     const line = new RichMenu(req.session.channel);
     let doc = null;
     if (req.body['doc_id'].length > 0) {
