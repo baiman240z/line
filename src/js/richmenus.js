@@ -22,7 +22,6 @@ const $ = require('jquery');
         $.getJSON(
         'json', {id: $(this).closest('li').attr('menu-id')}
         ).done((response) => {
-            console.log(response);
             $('#detail-modal img').attr('src', '/richmenu/image?id=' + response['richMenuId']);
             $('#detail-modal pre.menu').text(JSON.stringify(response, null, 4));
             modal.open();

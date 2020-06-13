@@ -10,7 +10,6 @@ const tokens = new Tokens();
 router.get('/menus', async function (req, res) {
     const line = new RichMenu(req.session.channel);
     const menus = await line.menus();
-    // console.log(menus);
     const defMenu = await line.default();
     res.render('richmenus', {
         menus: menus,
@@ -27,7 +26,7 @@ router.get('/image', async function (req, res) {
 
 router.post('/delete', async function (req, res) {
     const line = new RichMenu(req.session.channel);
-    const result = await line.delete(req.body['id']);
+    const result = await line.callDelete(req.body['id']);
     console.log(result);
     res.redirect('/richmenu/menus');
 });

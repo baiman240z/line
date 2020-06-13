@@ -6,6 +6,8 @@ module.exports = {
         'js/init': `${__dirname}/src/js/init.js`,
         'js/richmenu': `${__dirname}/src/js/richmenu.js`,
         'js/richmenus': `${__dirname}/src/js/richmenus.js`,
+        'js/audience': `${__dirname}/src/js/audience.js`,
+        'js/audiences': `${__dirname}/src/js/audiences.js`
     },
     module: {
         rules: [

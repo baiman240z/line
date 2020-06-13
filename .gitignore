@@ -5,3 +5,4 @@
 /config/
 /tmp/
 /package-lock.json
+/app/debug.js

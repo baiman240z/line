@@ -51,6 +51,7 @@ app.use(function(req, res, next) {
 
 app.use('/', require('./app/index'));
 app.use('/richmenu', require('./app/rich-menu'));
+app.use('/audience', require('./app/audience'));
 
 program.option('--port <number>', 'listen port');
 program.parse(process.argv);

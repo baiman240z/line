@@ -1,0 +1,41 @@
+{% extends 'layouts/base.twig' %}
+
+{% block title %}Audience{% endblock %}
+
+{% block container %}
+    <h1>Audience</h1>
+
+    <div class="section">
+        <form id="main-form" method="post" action="">
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+            <input type="hidden" name="id" value="{{ id }}">
+            <div class="card-panel z-depth-3">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field">
+                            <input type="text" name="description" value="{{ description }}">
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="input-field">
+                            <textarea name="audiences" class="materialize-textarea yellow lighten-5"></textarea>
+                            <label for="audiences">LINE ID</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button class="waves-effect waves-light btn" type="submit">
+                        <i class="material-icons left">send</i>Send
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/audience.js"></script>
+{% endblock %}
