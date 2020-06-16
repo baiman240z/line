@@ -1,8 +1,19 @@
 const Line = require('./line');
 
 module.exports = class RichMenu extends Line {
-    menus() {
-        return this.client.getRichMenuList();
+    async menus() {
+        const menus = await this.client.getRichMenuList();
+        console.log(menus);
+        menus.sort((a, b) => {
+            if (a['name'] > b['name']) {
+                return 1;
+            } else if (a['name'] == b['name']) {
+                return 0;
+            } else {
+                return -1;
+            }
+        });
+        return menus;
     }
 
     menu(menuId) {
