@@ -3,7 +3,6 @@ const Line = require('./line');
 module.exports = class RichMenu extends Line {
     async menus() {
         const menus = await this.client.getRichMenuList();
-        console.log(menus);
         menus.sort((a, b) => {
             if (a['name'] > b['name']) {
                 return 1;
