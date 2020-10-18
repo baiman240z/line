@@ -26,7 +26,11 @@ router.post('/upload', multer({ dest: 'tmp/' }).single('file'), (req, res) => {
 });
 
 router.post('/setting', async function (req, res) {
-    req.session.channel = req.body['channel'];
+    res.cookie('channel', req.body['channel'], {
+        expires: new Date(Date.now() + 86400 * 30),
+        httpOnly: true,
+        secure: false
+    });
     Util.setFlashMessage(req.session, 'Changed setting');
     res.send('ok');
 });

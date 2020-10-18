@@ -8,7 +8,7 @@ const tokens = new Tokens();
 const Audience = require('./classes/audience');
 
 router.get('/audiences', async function (req, res) {
-    const line = new Audience(req.session.channel);
+    const line = new Audience(req.cookies.channel);
     const page = await line.page();
     res.render('audiences', {
         groups: page.audienceGroups,
@@ -21,7 +21,7 @@ router.get('/audience', async function (req, res) {
 
     let description;
     if (req.query['id']) {
-        const line = new Audience(req.session.channel);
+        const line = new Audience(req.cookies.channel);
         const audience = await line.get(req.query['id']);
         console.log(audience);
         description = audience.audienceGroup.description;
@@ -43,7 +43,7 @@ router.post('/audience', async function (req, res) {
     }
 
     const audiences = req.body['audiences'].split(/\r\n|\r|\n/);
-    const line = new Audience(req.session.channel);
+    const line = new Audience(req.cookies.channel);
     if (req.query['id']) {
         const result = await line.update(req.query['id'], req.body['description'], audiences);
         console.log(result);
@@ -61,7 +61,7 @@ router.post('/audience', async function (req, res) {
 });
 
 router.post('/delete', async function (req, res) {
-    const line = new Audience(req.session.channel);
+    const line = new Audience(req.cookies.channel);
     const result = await line.delete(req.body['id']);
     console.log(result);
     Util.setFlashMessage(req.session, 'Deleted');

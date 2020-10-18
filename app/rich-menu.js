@@ -8,7 +8,7 @@ const Tokens = require('csrf');
 const tokens = new Tokens();
 
 router.get('/menus', async function (req, res) {
-    const line = new RichMenu(req.session.channel);
+    const line = new RichMenu(req.cookies.channel);
     const menus = await line.menus();
     const defMenu = await line.default();
     res.render('richmenus', {
@@ -18,21 +18,21 @@ router.get('/menus', async function (req, res) {
 });
 
 router.get('/image', async function (req, res) {
-    const line = new RichMenu(req.session.channel);
+    const line = new RichMenu(req.cookies.channel);
     const buffer = await line.image(req.query['id']);
     res.append('Content-Type', 'image/png');
     res.send(buffer);
 });
 
 router.post('/delete', async function (req, res) {
-    const line = new RichMenu(req.session.channel);
+    const line = new RichMenu(req.cookies.channel);
     const result = await line.delete(req.body['id']);
     console.log(result);
     res.redirect('/richmenu/menus');
 });
 
 router.post('/default', async function (req, res) {
-    const line = new RichMenu(req.session.channel);
+    const line = new RichMenu(req.cookies.channel);
     const result = await line.setDefault(req.body['id']);
     res.redirect('/richmenu/menus');
 });
@@ -53,7 +53,7 @@ router.post('/menu', async function (req, res) {
         return;
     }
 
-    const line = new RichMenu(req.session.channel);
+    const line = new RichMenu(req.cookies.channel);
     let doc = null;
     if (req.body['doc_id'].length > 0) {
         doc = Util.readDoc(req.body['doc_id']);
@@ -78,7 +78,7 @@ router.post('/menu', async function (req, res) {
 });
 
 router.get('/json', async function (req, res) {
-    const line = new RichMenu(req.session.channel);
+    const line = new RichMenu(req.cookies.channel);
     const menu = await line.menu(req.query['id']).catch((err) => {
         console.log(err);
     });
