@@ -1,11 +1,15 @@
 const path = require('path');
 const express = require('express');
-const app = express();
 const {program} = require('commander');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const redis = require('redis')
+const RedisStore = require('connect-redis')(session);
 const Config = require('./app/classes/config');
+
+const app = express();
+const redisClient = redis.createClient();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
@@ -13,6 +17,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
+    store: new RedisStore({
+        client: redisClient,
+        prefix: 'line-tool:'
+    }),
     secret: 'secret',
     resave: false,
     saveUninitialized: false,
@@ -33,7 +41,7 @@ app.use(function(req, res, next) {
         for (let key in channels) {
             currentChannel = key;
             res.cookie('channel', key, {
-                expires: new Date(Date.now() + 86400 * 30),
+                expires: new Date(Date.now() + 86400 * 30 * 1000),
                 httpOnly: true,
                 secure: false
             });
