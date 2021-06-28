@@ -1,13 +1,20 @@
+const path = require('path');
+
 module.exports = {
     devtool: 'inline-source-map',
     watch: false,
     mode: "development",
+    context: path.resolve(__dirname, 'src'),
+    output: {
+        path: path.resolve(__dirname, 'public/js'),
+        filename: "[name].js"
+    },
     entry: {
-        'js/init': `${__dirname}/src/js/init.js`,
-        'js/richmenu': `${__dirname}/src/js/richmenu.js`,
-        'js/richmenus': `${__dirname}/src/js/richmenus.js`,
-        'js/audience': `${__dirname}/src/js/audience.js`,
-        'js/audiences': `${__dirname}/src/js/audiences.js`
+        'init': './js/init.js',
+        'richmenu': './js/richmenu.js',
+        'richmenus': './js/richmenus.js',
+        'audience': './js/audience.js',
+        'audiences': './js/audiences.js'
     },
     module: {
         rules: [
@@ -22,13 +29,9 @@ module.exports = {
             }
         ]
     },
-    output: {
-        path: `${__dirname}/public`,
-        filename: "[name].js"
-    },
     optimization: {
         splitChunks: {
-            name: "js/chunks",
+            name: "chunks",
             chunks: "initial"
         }
     },
